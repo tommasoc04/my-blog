@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post.</title>
+    <script>
+        if (localStorage.getItem('theme') === null) {
+            localStorage.setItem('theme', 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <style>
+        /* --- CSS ENGINE (NON TOCCARE) --- */
+        :root { --bg: #ffffff; --fg: #000000; --gray: #666666; --line: #eeeeee; --code-bg: #f4f4f4; }
+        .dark-mode { --bg: #0a0a0a; --fg: #ffffff; --gray: #bbbbbb; --line: #333333; --code-bg: #1a1a1a; }
+        
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif; background: var(--bg); color: var(--fg); transition: 0.3s; }
+        .app { max-width: 900px; margin: 0 auto; padding: 60px 30px; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Nav & Toggle */
+        nav { margin-bottom: 80px; display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { font-size: 1rem; color: var(--gray); font-weight: 500; }
+        .back-btn:hover { color: var(--fg); text-decoration: underline; }
+        .toggle-btn { background: none; border: 1px solid var(--fg); color: var(--fg); padding: 6px 14px; border-radius: 20px; font-family: inherit; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+        .toggle-btn:hover { background: var(--fg); color: var(--bg); }
+
+        /* Typography Base */
+        article h1 { font-size: 2.5rem; margin: 0 0 15px 0; font-weight: 800; text-transform: lowercase; letter-spacing: -1px; line-height: 1.1; }
+        .meta { font-size: 0.9rem; color: var(--gray); display: block; margin-bottom: 50px; border-bottom: 1px solid var(--line); padding-bottom: 25px; }
+        p { font-size: 1.2rem; line-height: 1.7; margin-bottom: 2rem; max-width: 800px; }
+        
+        /* --- NUOVI ELEMENTI AGGIUNTI --- */
+        
+        /* Sottotitoli */
+        h2 { font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; font-weight: 700; text-transform: lowercase; }
+
+        /* Citazioni */
+        blockquote { border-left: 4px solid var(--fg); margin: 40px 0; padding-left: 25px; font-style: italic; color: var(--gray); font-size: 1.3rem;}
+
+        /* Liste (Puntate e Numerate) */
+        ul, ol { margin-bottom: 2rem; padding-left: 20px; font-size: 1.15rem; line-height: 1.7; color: var(--fg); max-width: 800px; }
+        li { margin-bottom: 10px; padding-left: 10px; }
+
+        /* Immagini (Responsive) */
+        img { max-width: 100%; height: auto; border-radius: 4px; margin: 30px 0; display: block; }
+        .caption { font-size: 0.9rem; color: var(--gray); text-align: center; margin-top: -20px; margin-bottom: 40px; display: block; }
+
+        /* Codice / Note Tecniche */
+        pre { background: var(--code-bg); padding: 20px; border-radius: 6px; overflow-x: auto; margin-bottom: 2rem; font-family: monospace; font-size: 0.95rem; border: 1px solid var(--line); }
+
+        /* Separatore */
+        hr { border: 0; border-top: 1px solid var(--line); margin: 60px 0; }
+        
+        /* Link nel testo */
+        p a { text-decoration: underline; text-underline-offset: 4px; color: var(--fg); font-weight: bold; }
+        /* -------------------------------- */
+    </style>
+</head>
+<body>
+    <div class="app">
+        <nav>
+            <a href="index.html" class="back-btn">&larr; back</a>
+            <button class="toggle-btn" onclick="toggleTheme()">switch theme</button>
+        </nav>
+
+        <article>
+            
+            <h1>[TITOLO DEL POST]</h1>
+            <span class="meta">[DATA] &nbsp;·&nbsp; [MINUTI LETTURA]</span>
+
+            <p>
+                [Primo paragrafo introduttivo...]
+            </p>
+
+            <h2>un sottotitolo importante</h2>
+
+            <p>
+                [Testo normale...]
+            </p>
+
+            <ul>
+                <li>Primo punto della lista</li>
+                <li>Secondo punto della lista</li>
+                <li>Terzo punto</li>
+            </ul>
+
+            <blockquote>
+                "[Inserisci qui la tua citazione]"
+            </blockquote>
+
+            <hr>
+
+            <ol>
+                <li>Primo step</li>
+                <li>Secondo step</li>
+            </ol>
+            
+            <pre>
+                Esempio di nota tecnica o codice.
+                Lo sfondo qui è leggermente diverso.
+            </pre>
+
+        </article>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>
